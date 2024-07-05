@@ -1,0 +1,44 @@
+=== Pretty RSS Feeds ===
+Contributors: lastsplash
+Tags: rss, feed, feeds
+Requires at least: 6.0
+Tested up to: 6.5.4
+Requires PHP: 7.4
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Transforms the in-browser view of feeds to make them user-friendly.
+
+== Description ==
+
+[[ ADD DESCRIPTION ]]
+
+== Installation ==
+
+Activate the plugin through the 'Plugins' menu in WordPress
+
+== Frequently Asked Questions ==
+
+= How does this work? =
+
+It adds a stylesheet to apply a visual transformation to the default feed view.
+
+= Are there any limitations? =
+
+From the developer:
+
+> Styling the feed *prevents* the browser from automatically opening a newsreader application. This is a trade off, but it's a benefit to new users who won't have a newsreader installed, and they are saved from seeing or downloaded obscure XML content. For existing newsreader users, they will know to copy-and-paste the feed URL, and they get the benefit of an in-browser feed preview.
+
+== Screenshots ==
+
+1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
+directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
+(or jpg, jpeg, gif).
+2. This is the second screen shot
+
+== Changelog ==
+
+= 1.0.0 =
+* Initial release
