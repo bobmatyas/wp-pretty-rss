@@ -12,7 +12,9 @@ Transforms the in-browser view of feeds to make them user-friendly.
 
 == Description ==
 
-[[ ADD DESCRIPTION ]]
+This plugin improves the default in-browser view of feeds to make them user-friendly. It makes it easier for human readers and adds a link to [Aboutfeeds.com](https://aboutfeeds.com/) to introduce new users to feeds.
+
+The plugin uses `pretty-feed.xsl` to transform the feeds. 
 
 == Installation ==
 
@@ -22,7 +24,7 @@ Activate the plugin through the 'Plugins' menu in WordPress
 
 = How does this work? =
 
-It adds a stylesheet to apply a visual transformation to the default feed view.
+It adds a stylesheet to apply a visual transformation to the default feed view. The stylesheet adjusts the default in-browser feed view to provide information about what a feed is and how they work.
 
 = Are there any limitations? =
 
