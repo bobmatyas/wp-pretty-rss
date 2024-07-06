@@ -22,8 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function wsd_feed_stylesheet( $feed ) {
-	$xsl_url = esc_url( plugin_dir_url( __FILE__ ) . 'xslt/pretty-feed.xsl' );
-	echo '<?xml-stylesheet href="'. $xsl_url .'" type="text/xsl" media="screen" ?>';
+	$xsl_url = plugin_dir_url( __FILE__ ) . 'xslt/pretty-feed.xsl';
+	echo '<?xml-stylesheet href="'. esc_url( $xsl_url ) .'" type="text/xsl" media="screen" ?>';
 }
 add_action( 'rss_tag_pre', 'wsd_feed_stylesheet' );
 
