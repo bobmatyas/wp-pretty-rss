@@ -28,17 +28,14 @@ It adds a stylesheet to apply a visual transformation to the default feed view. 
 
 = Are there any limitations? =
 
-From the developer:
+From the developer of the `pretty-feed` stylesheet:
 
 > Styling the feed *prevents* the browser from automatically opening a newsreader application. This is a trade off, but it's a benefit to new users who won't have a newsreader installed, and they are saved from seeing or downloaded obscure XML content. For existing newsreader users, they will know to copy-and-paste the feed URL, and they get the benefit of an in-browser feed preview.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. An example of the styled feed after installing this plugin
+2. An example of how the feed is rendered without this plugin
 
 == Changelog ==
 
