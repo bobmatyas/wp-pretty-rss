@@ -37,9 +37,29 @@ h3 {
     grid-template-columns: 1fr auto;
     align-items: center;
 }
-
 .intro-logo {
     text-align: right;
+}
+
+@media screen and (max-width: 767px) {
+    .intro .container {
+        grid-template-columns: auto;
+        gap:0;
+    }
+    .rss-icon {
+        width: 3em;
+        height: 3em;
+    }
+    .container{
+        padding: calc(var(--gap) * 2);
+    }
+    .intro-logo {
+        text-align: center;
+    }
+
+    .intro code{
+        word-break: break-all;
+    }
 }
 
 .rss-icon {

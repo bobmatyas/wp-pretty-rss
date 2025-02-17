@@ -66,7 +66,7 @@
                 </div>
                 <div class="intro-text">
                 <p>
-                This is a preview of this site's feed, also known as an RSS feed. Add the URL of this page (<code><xsl:value-of select="$settings-data/settings/feed-url"/></code>)to your feed reader to subscribe.
+                This is a preview of this site's feed, also known as an RSS feed. Add the URL of this page (<code><xsl:value-of select="$settings-data/settings/feed-url"/></code>) to your feed reader to subscribe.
                 </p>
                 <xsl:if test="$settings-data/settings/about-feed-link = '1'">
                   <p class="about-feed-link">
