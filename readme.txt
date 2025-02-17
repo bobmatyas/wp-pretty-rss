@@ -40,7 +40,7 @@ From the developer of the `pretty-feed` stylesheet:
 
 == Credits ==
 
-* The XSL file is based on pretty-rss v3 by 
+* The XSL file is based on [pretty-rss v3](https://github.com/genmon/aboutfeeds/blob/main/tools/pretty-feed-v3.xsl) by Matt Webb.
 * Darek Kay has [a great article on styling feeds](https://darekkay.com/blog/rss-styling/) using this method on their blog.
 * CSS insperation from [Dave Rupert's feed](https://daverupert.com/atom.xml).
 * This plugins uses the [ArrayToXML](https://github.com/spatie/array-to-xml) class by Spatie
