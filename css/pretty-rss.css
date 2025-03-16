@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    --gap: 3vw;
+    margin: 0;
+    font-family: system-ui;
+    line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.container {
+    display: grid;
+    gap: var(--gap);
+    max-width: 46rem;
+    width: 95%;
+    margin: auto;
+    padding-block-end: var(--gap);
+
+}
+
+.intro {
+    background-color: #FAFACC;
+    padding-block: calc(var(--gap) / 2);
+    border-bottom: 0.25rem solid #DEDEA2;
+}
+
+.intro .container {
+    gap: 2rem;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+.intro-logo {
+    text-align: right;
+}
+
+@media screen and (max-width: 767px) {
+    .intro .container {
+        grid-template-columns: auto;
+        gap:0;
+    }
+    .rss-icon {
+        width: 3em;
+        height: 3em;
+    }
+    .container{
+        padding: calc(var(--gap) * 2);
+    }
+    .intro-logo {
+        text-align: center;
+    }
+
+    .intro code{
+        word-break: break-all;
+    }
+}
+
+.rss-icon {
+    width: 6em;
+    height: 6em;
+}
+
+header {
+    border-bottom: 0.25rem solid #DEDEA2;
+    margin-block-end: var(--gap);
+    padding-block-start: calc(var(--gap) / 2);
+    padding-block-end: calc(var(--gap) / 2);
+}
+
+header .container .site-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header .container .site-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.head_link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.head_link:hover {
+    text-decoration: underline;
+}
+
+header .container .site-icon img {
+    border-radius: 100%;
+}
+
+.feed-title {
+    margin: 0;
+    line-height: 1.2;
+    /* Tighter line height for the title */
+}
+
+.feed-description {
+    margin: 0;
+    line-height: 1.4;
+    /* Slightly tighter line height for description */
+}
+
+.site-link {
+    margin-top: 0.25rem;
+    /* Small space before the link */
+    display: inline-block;
+    text-decoration: none;
+}
+
+.recent {
+    padding-block-end: var(--gap);
+    gap: calc(var(--gap) / 2);
+}
+
+.item {
+    line-height: 1.5;
+}
