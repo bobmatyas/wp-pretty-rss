@@ -1,10 +1,10 @@
 === Pretty RSS Feeds ===
 Contributors: lastsplash, brookedot
 Tags: rss, feed, feeds
-Requires at least: 6.0
-Tested up to: 6.7.2
+Requires at least: 6.7
+Tested up to: 6.8.2
 Requires PHP: 8.0
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,10 @@ From the developer of the `pretty-feed` stylesheet:
 * This plugins uses the [ArrayToXML](https://github.com/spatie/array-to-xml) class by Spatie
 
 == Changelog ==
+
+= 2.0.1 =
+* Adds fix for feeds on WordPress.com
+* Indicates compatibility for WordPress v6.8.x
 
 = 2.0.0 =
 * Added basic style options Under Settings > Reading

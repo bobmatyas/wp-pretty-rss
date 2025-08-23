@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName -- We don't use core's class naming convention
+
 /**
  * Plugin Name:     Pretty RSS Feeds
  * Description:     Transforms the default in-browser view of the feed to be user-friendly.
@@ -6,7 +7,7 @@
  * Author URI:      https://www.bobmatyas.com
  * Text Domain:     pretty-rss
  * Domain Path:     /languages
- * Version:         2.0.0
+ * Version:         2.0.1
  *
  * @package         Pretty_Rss
  */
@@ -27,7 +28,7 @@ class PrettyRSS {
 		define( 'PRETTYRSS_FILE', __FILE__ );
 		define( 'PRETTYRSS_DIR', trailingslashit( __DIR__ ) );
 		define( 'PRETTYRSS_PATH', plugin_dir_url( __FILE__ ) );
-		define( 'PRETTYRSS_VERSION', '2.0.0' );
+		// Version is now defined at the top of the file
 
 		add_action( 'plugins_loaded', array( $this, 'includes' ) );
 		add_action( 'rss_tag_pre', array( $this, 'add_feed_stylesheet' ) );
