@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define( 'PRETTYRSS_VERSION', '2.0.1' );
+
 /**
  * The main PrettyRSS class which includes our other classes and sets things up.
  */
@@ -28,7 +30,6 @@ class PrettyRSS {
 		define( 'PRETTYRSS_FILE', __FILE__ );
 		define( 'PRETTYRSS_DIR', trailingslashit( __DIR__ ) );
 		define( 'PRETTYRSS_PATH', plugin_dir_url( __FILE__ ) );
-		// Version is now defined at the top of the file
 
 		add_action( 'plugins_loaded', array( $this, 'includes' ) );
 		add_action( 'rss_tag_pre', array( $this, 'add_feed_stylesheet' ) );
