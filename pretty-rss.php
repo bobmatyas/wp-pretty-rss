@@ -6,8 +6,9 @@
  * Author:          Bob Matyas
  * Author URI:      https://www.bobmatyas.com
  * Text Domain:     pretty-rss
- * Domain Path:     /languages
  * Version:         2.0.2
+ * License:         GPLv2 or later
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @package         Pretty_Rss
  */

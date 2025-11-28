@@ -47,6 +47,10 @@ From the developer of the `pretty-feed` stylesheet:
 
 == Changelog ==
 
+= 2.0.2 =
+* Add license to plugin header
+* Indicates compatibility for WordPress v6.9
+
 = 2.0.1 =
 * Adds fix for feeds on WordPress.com
 * Indicates compatibility for WordPress v6.8.x

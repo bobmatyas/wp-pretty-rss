@@ -2,7 +2,7 @@
 /**
  * Admin Settings
  *
- * This file registers and outputs the admin page under the Readeing Settings of WP Admin.
+ * This file registers and outputs the admin page under the Reading Settings of WP Admin.
  *
  * @package   pretty-rss
  * @author    Brooke.
@@ -39,7 +39,7 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 		public function add_settings_to_reading() {
 			add_settings_section(
 				'wp_pretty_feeds',
-				__( 'WP Pretty RSS', 'pretty-rss' ),
+				__( 'Pretty RSS', 'pretty-rss' ),
 				array( $this, 'settings_display' ),
 				'reading',
 			);
