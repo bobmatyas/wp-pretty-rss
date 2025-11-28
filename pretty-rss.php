@@ -7,7 +7,7 @@
  * Author URI:      https://www.bobmatyas.com
  * Text Domain:     pretty-rss
  * Domain Path:     /languages
- * Version:         2.0.1
+ * Version:         2.0.2
  *
  * @package         Pretty_Rss
  */
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'PRETTYRSS_VERSION', '2.0.1' );
+define( 'PRETTYRSS_VERSION', '2.0.2' );
 
 /**
  * The main PrettyRSS class which includes our other classes and sets things up.
