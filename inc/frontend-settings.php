@@ -10,6 +10,10 @@
  * @license   GPL-3.0-or-later
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 require_once PRETTYRSS_DIR . '/inc/lib/ArrayToXml.php';
 use Spatie\ArrayToXml\ArrayToXml;
 

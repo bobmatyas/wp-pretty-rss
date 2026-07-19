@@ -10,6 +10,10 @@
  * @license   GPL-3.0-or-later
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 	/**
 	 * Class to display and register WordPress settings page and option array
