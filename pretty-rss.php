@@ -6,7 +6,7 @@
  * Author:          Bob Matyas
  * Author URI:      https://www.bobmatyas.com
  * Text Domain:     pretty-rss
- * Version:         2.0.3
+ * Version:         2.0.4
  * License:         GPLv2 or later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'PRETTYRSS_VERSION', '2.0.3' );
+define( 'PRETTYRSS_VERSION', '2.0.4' );
 
 /**
  * The main PrettyRSS class which includes our other classes and sets things up.
