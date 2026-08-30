@@ -2,9 +2,9 @@
 Contributors: lastsplash, brookedot
 Tags: rss, feed, feeds
 Requires at least: 6.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,9 @@ From the developer of the `pretty-feed` stylesheet:
 * This plugins uses the [ArrayToXML](https://github.com/spatie/array-to-xml) class by Spatie
 
 == Changelog ==
+
+= 2.0.4 =
+* Tested up to WordPress 7.1.
 
 = 2.0.3 =
 - Address minor code issues identified by Plugin Check
