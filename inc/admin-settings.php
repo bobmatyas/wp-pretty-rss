@@ -77,29 +77,64 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 		}
 
 		/**
-		 * Whether the current user should see the deprecation notice.
+		 * Where the deprecation notice should appear on this admin screen.
+		 *
+		 * The Dashboard shows it once per user. Plugins and Settings → Reading keep showing it.
 		 *
 		 * @since  2.1.0
 		 * @access private
-		 * @return bool
+		 * @param string $hook_suffix Current admin page hook, or a screen id.
+		 * @return string "dashboard", "persistent", or an empty string.
 		 */
-		private function should_show_deprecation_notice() {
+		private function deprecation_notice_location( $hook_suffix = '' ) {
 			if ( ! current_user_can( 'manage_options' ) ) {
-				return false;
+				return '';
 			}
 
-			return ! get_user_meta( get_current_user_id(), 'prettyrss_dismissed_deprecation_notice', true );
+			if ( '' === $hook_suffix ) {
+				$screen      = get_current_screen();
+				$hook_suffix = ( $screen && isset( $screen->id ) ) ? $screen->id : '';
+			}
+
+			$persistent_screens = array(
+				'plugins',
+				'plugins.php',
+				'plugins-network',
+				'options-reading',
+				'options-reading.php',
+			);
+			if ( in_array( $hook_suffix, $persistent_screens, true ) ) {
+				return 'persistent';
+			}
+
+			$dashboard_screens = array(
+				'dashboard',
+				'dashboard-network',
+				'index.php',
+			);
+			if ( ! in_array( $hook_suffix, $dashboard_screens, true ) ) {
+				return '';
+			}
+
+			$user_id = get_current_user_id();
+			$seen    = get_user_meta( $user_id, 'prettyrss_seen_deprecation_dashboard', true ) || get_user_meta( $user_id, 'prettyrss_dismissed_deprecation_notice', true );
+			if ( $seen ) {
+				return '';
+			}
+
+			return 'dashboard';
 		}
 
 		/**
-		 * Enqueue the script that persists dismissal of the deprecation notice.
+		 * Enqueue the script that persists dismissal of the Dashboard notice.
 		 *
 		 * @since  2.1.0
 		 * @access public
+		 * @param string $hook_suffix Current admin page.
 		 * @return void
 		 */
-		public function enqueue_deprecation_notice() {
-			if ( ! $this->should_show_deprecation_notice() ) {
+		public function enqueue_deprecation_notice( $hook_suffix ) {
+			if ( 'dashboard' !== $this->deprecation_notice_location( $hook_suffix ) ) {
 				return;
 			}
 
@@ -129,11 +164,16 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 		 * @return void
 		 */
 		public function deprecation_notice() {
-			if ( ! $this->should_show_deprecation_notice() ) {
+			$location = $this->deprecation_notice_location();
+			if ( '' === $location ) {
 				return;
 			}
+
+			if ( 'dashboard' === $location ) {
+				update_user_meta( get_current_user_id(), 'prettyrss_seen_deprecation_dashboard', '1' );
+			}
 			?>
-			<div class="notice notice-warning is-dismissible" id="prettyrss-deprecation-notice">
+			<div class="notice notice-warning<?php echo ( 'dashboard' === $location ) ? ' is-dismissible' : ''; ?>" id="prettyrss-deprecation-notice">
 				<p>
 					<?php
 					printf(
@@ -171,6 +211,7 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 				wp_send_json_error( null, 403 );
 			}
 
+			update_user_meta( get_current_user_id(), 'prettyrss_seen_deprecation_dashboard', '1' );
 			update_user_meta( get_current_user_id(), 'prettyrss_dismissed_deprecation_notice', '1' );
 			wp_send_json_success();
 		}

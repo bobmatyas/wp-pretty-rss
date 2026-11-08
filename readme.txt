@@ -51,7 +51,7 @@ From the developer of the `pretty-feed` stylesheet:
 
 = 2.1.0 =
 * Deprecated the plugin because browsers are removing XSLT support. This plugin will be closed soon.
-* Added a dismissible admin notice for site administrators.
+* Show the deprecation notice once on the Dashboard, then only on the Plugins screen and Settings → Reading.
 
 = 2.0.4 =
 * Tested up to WordPress 7.1.
