@@ -135,14 +135,14 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 			?>
 			<div class="notice notice-warning is-dismissible" id="prettyrss-deprecation-notice">
 				<p>
-					<strong><?php esc_html_e( 'CRITICAL NOTICE:', 'pretty-rss' ); ?></strong>
 					<?php
 					printf(
 						wp_kses(
 							/* translators: %s: URL to the Chrome XSLT deprecation documentation. */
-							__( 'Pretty RSS Feeds is deprecated and will be closed. Modern browsers are removing XSLT, which this plugin uses to style feeds. <a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>.', 'pretty-rss' ),
+							__( '<strong>CRITICAL NOTICE:</strong> The Pretty RSS Feeds plugin is deprecated and will be closed soon. Modern browsers are removing XSLT, which this plugin uses to style feeds (<a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>). Please uninstall the plugin.', 'pretty-rss' ),
 							array(
-								'a' => array(
+								'strong' => array(),
+								'a'      => array(
 									'href'   => array(),
 									'target' => array(),
 									'rel'    => array(),

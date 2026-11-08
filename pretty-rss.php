@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:     Pretty RSS Feeds [DEPRECATED]
- * Description:     Deprecated. Browsers are removing XSLT, which this plugin uses to style feeds. This plugin will be closed.
+ * Description:     Deprecated and closing soon. Browsers are removing XSLT, which this plugin uses to style feeds. Please uninstall this plugin.
  * Author:          Bob Matyas
  * Author URI:      https://www.bobmatyas.com
  * Text Domain:     pretty-rss
