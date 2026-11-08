@@ -32,6 +32,7 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_color_picker' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_deprecation_notice' ) );
 			add_action( 'admin_notices', array( $this, 'deprecation_notice' ) );
+			add_action( 'network_admin_notices', array( $this, 'deprecation_notice' ) );
 			add_action( 'wp_ajax_prettyrss_dismiss_deprecation_notice', array( $this, 'dismiss_deprecation_notice' ) );
 		}
 
