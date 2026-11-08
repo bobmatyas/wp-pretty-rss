@@ -139,7 +139,7 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 					printf(
 						wp_kses(
 							/* translators: %s: URL to the Chrome XSLT deprecation documentation. */
-							__( '<strong>CRITICAL NOTICE:</strong> The Pretty RSS Feeds plugin is deprecated and will be closed soon. Modern browsers are removing XSLT, which this plugin uses to style feeds (<a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>). Please uninstall the plugin.', 'pretty-rss' ),
+							__( '<strong>⚠️ Notice:</strong> The Pretty RSS Feeds plugin is deprecated and will be closed soon. Modern browsers are removing XSLT, which this plugin uses to style feeds (<a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>). Please uninstall the plugin.', 'pretty-rss' ),
 							array(
 								'strong' => array(),
 								'a'      => array(

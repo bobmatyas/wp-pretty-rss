@@ -12,7 +12,7 @@ Transforms the in-browser view of feeds to make them user-friendly.
 
 == Description ==
 
-**CRITICAL NOTICE: The Pretty RSS Feeds plugin is deprecated and will be closed soon.** Modern browsers are removing XSLT, which this plugin uses to style feeds ([Learn more](https://developer.chrome.com/docs/web-platform/deprecating-xslt)). Please uninstall the plugin.
+**⚠️ Notice: The Pretty RSS Feeds plugin is deprecated and will be closed soon.** Modern browsers are removing XSLT, which this plugin uses to style feeds ([Learn more](https://developer.chrome.com/docs/web-platform/deprecating-xslt)). Please uninstall the plugin.
 
 This plugin improves the default in-browser view of feeds to make them user-friendly. It makes it easier for human readers and adds a link to [Aboutfeeds.com](https://aboutfeeds.com/) to introduce new users to feeds.
 
