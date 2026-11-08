@@ -30,6 +30,10 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 			add_action( 'admin_menu', array( $this, 'add_settings_to_reading' ) );
 			add_action( 'admin_init', array( $this, 'register_prettyrss_settings' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_color_picker' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_deprecation_notice' ) );
+			add_action( 'admin_notices', array( $this, 'deprecation_notice' ) );
+			add_action( 'network_admin_notices', array( $this, 'deprecation_notice' ) );
+			add_action( 'wp_ajax_prettyrss_dismiss_deprecation_notice', array( $this, 'dismiss_deprecation_notice' ) );
 		}
 
 		/**
@@ -71,6 +75,146 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 				PRETTYRSS_VERSION,
 				true
 			);
+		}
+
+		/**
+		 * Where the deprecation notice should appear on this admin screen.
+		 *
+		 * The Dashboard shows it once per user. Plugins and Settings → Reading keep showing it.
+		 *
+		 * @since  2.1.0
+		 * @access private
+		 * @param string $hook_suffix Current admin page hook, or a screen id.
+		 * @return string "dashboard", "persistent", or an empty string.
+		 */
+		private function deprecation_notice_location( $hook_suffix = '' ) {
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return '';
+			}
+
+			if ( '' === $hook_suffix ) {
+				$screen      = get_current_screen();
+				$hook_suffix = ( $screen && isset( $screen->id ) ) ? $screen->id : '';
+			}
+
+			$persistent_screens = array(
+				'plugins',
+				'plugins.php',
+				'plugins-network',
+				'options-reading',
+				'options-reading.php',
+			);
+			if ( in_array( $hook_suffix, $persistent_screens, true ) ) {
+				return 'persistent';
+			}
+
+			$dashboard_screens = array(
+				'dashboard',
+				'dashboard-network',
+				'index.php',
+			);
+			if ( ! in_array( $hook_suffix, $dashboard_screens, true ) ) {
+				return '';
+			}
+
+			$user_id = get_current_user_id();
+			$seen    = get_user_meta( $user_id, 'prettyrss_seen_deprecation_dashboard', true ) || get_user_meta( $user_id, 'prettyrss_dismissed_deprecation_notice', true );
+			if ( $seen ) {
+				return '';
+			}
+
+			return 'dashboard';
+		}
+
+		/**
+		 * Enqueue the script that persists dismissal of the Dashboard notice.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @param string $hook_suffix Current admin page.
+		 * @return void
+		 */
+		public function enqueue_deprecation_notice( $hook_suffix ) {
+			if ( 'dashboard' !== $this->deprecation_notice_location( $hook_suffix ) ) {
+				return;
+			}
+
+			wp_enqueue_script(
+				'prettyrss-deprecation-notice',
+				PRETTYRSS_PATH . '/js/deprecation-notice.js',
+				array( 'jquery' ),
+				PRETTYRSS_VERSION,
+				true
+			);
+
+			wp_localize_script(
+				'prettyrss-deprecation-notice',
+				'prettyRssDeprecation',
+				array(
+					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+					'nonce'   => wp_create_nonce( 'prettyrss_dismiss_deprecation_notice' ),
+				)
+			);
+		}
+
+		/**
+		 * Show a dismissible deprecation notice to administrators.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @return void
+		 */
+		public function deprecation_notice() {
+			$location = $this->deprecation_notice_location();
+			if ( '' === $location ) {
+				return;
+			}
+
+			if ( 'dashboard' === $location ) {
+				update_user_meta( get_current_user_id(), 'prettyrss_seen_deprecation_dashboard', '1' );
+			}
+			?>
+			<div class="notice notice-warning<?php echo ( 'dashboard' === $location ) ? ' is-dismissible' : ''; ?>" id="prettyrss-deprecation-notice">
+				<p>
+					<?php
+					printf(
+						wp_kses(
+							/* translators: %s: URL to the Chrome XSLT deprecation documentation. */
+							__( '<strong>⚠️ Notice:</strong> The Pretty RSS Feeds plugin is deprecated and will be closed soon. Modern browsers are removing XSLT, which this plugin uses to style feeds (<a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>). Please uninstall the plugin.', 'pretty-rss' ),
+							array(
+								'strong' => array(),
+								'a'      => array(
+									'href'   => array(),
+									'target' => array(),
+									'rel'    => array(),
+								),
+							)
+						),
+						esc_url( 'https://developer.chrome.com/docs/web-platform/deprecating-xslt' )
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Store the deprecation notice dismissal for the current user.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @return void
+		 */
+		public function dismiss_deprecation_notice() {
+			check_ajax_referer( 'prettyrss_dismiss_deprecation_notice', 'nonce' );
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( null, 403 );
+			}
+
+			update_user_meta( get_current_user_id(), 'prettyrss_seen_deprecation_dashboard', '1' );
+			update_user_meta( get_current_user_id(), 'prettyrss_dismissed_deprecation_notice', '1' );
+			wp_send_json_success();
 		}
 
 		/**

@@ -1,16 +1,18 @@
-=== Pretty RSS Feeds ===
+=== Pretty RSS Feeds [DEPRECATED] ===
 Contributors: lastsplash, brookedot
 Tags: rss, feed, feeds
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 2.0.4
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Transforms the in-browser view of feeds to make them user-friendly.
 
 == Description ==
+
+**⚠️ Notice: The Pretty RSS Feeds plugin is deprecated and will be closed soon.** Modern browsers are removing XSLT, which this plugin uses to style feeds ([Learn more](https://developer.chrome.com/docs/web-platform/deprecating-xslt)). Please uninstall the plugin.
 
 This plugin improves the default in-browser view of feeds to make them user-friendly. It makes it easier for human readers and adds a link to [Aboutfeeds.com](https://aboutfeeds.com/) to introduce new users to feeds.
 
@@ -46,6 +48,10 @@ From the developer of the `pretty-feed` stylesheet:
 * This plugins uses the [ArrayToXML](https://github.com/spatie/array-to-xml) class by Spatie
 
 == Changelog ==
+
+= 2.1.0 =
+* Deprecated the plugin because browsers are removing XSLT support. This plugin will be closed soon.
+* Show the deprecation notice once on the Dashboard, then only on the Plugins screen and Settings → Reading.
 
 = 2.0.4 =
 * Tested up to WordPress 7.1.
