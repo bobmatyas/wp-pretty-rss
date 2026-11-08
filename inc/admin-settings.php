@@ -30,6 +30,9 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 			add_action( 'admin_menu', array( $this, 'add_settings_to_reading' ) );
 			add_action( 'admin_init', array( $this, 'register_prettyrss_settings' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_color_picker' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_deprecation_notice' ) );
+			add_action( 'admin_notices', array( $this, 'deprecation_notice' ) );
+			add_action( 'wp_ajax_prettyrss_dismiss_deprecation_notice', array( $this, 'dismiss_deprecation_notice' ) );
 		}
 
 		/**
@@ -71,6 +74,105 @@ if ( ! class_exists( 'PrettyRSS_Admin_Settings' ) ) :
 				PRETTYRSS_VERSION,
 				true
 			);
+		}
+
+		/**
+		 * Whether the current user should see the deprecation notice.
+		 *
+		 * @since  2.1.0
+		 * @access private
+		 * @return bool
+		 */
+		private function should_show_deprecation_notice() {
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return false;
+			}
+
+			return ! get_user_meta( get_current_user_id(), 'prettyrss_dismissed_deprecation_notice', true );
+		}
+
+		/**
+		 * Enqueue the script that persists dismissal of the deprecation notice.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @return void
+		 */
+		public function enqueue_deprecation_notice() {
+			if ( ! $this->should_show_deprecation_notice() ) {
+				return;
+			}
+
+			wp_enqueue_script(
+				'prettyrss-deprecation-notice',
+				PRETTYRSS_PATH . '/js/deprecation-notice.js',
+				array( 'jquery' ),
+				PRETTYRSS_VERSION,
+				true
+			);
+
+			wp_localize_script(
+				'prettyrss-deprecation-notice',
+				'prettyRssDeprecation',
+				array(
+					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+					'nonce'   => wp_create_nonce( 'prettyrss_dismiss_deprecation_notice' ),
+				)
+			);
+		}
+
+		/**
+		 * Show a dismissible deprecation notice to administrators.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @return void
+		 */
+		public function deprecation_notice() {
+			if ( ! $this->should_show_deprecation_notice() ) {
+				return;
+			}
+			?>
+			<div class="notice notice-warning is-dismissible" id="prettyrss-deprecation-notice">
+				<p>
+					<strong><?php esc_html_e( 'CRITICAL NOTICE:', 'pretty-rss' ); ?></strong>
+					<?php
+					printf(
+						wp_kses(
+							/* translators: %s: URL to the Chrome XSLT deprecation documentation. */
+							__( 'Pretty RSS Feeds is deprecated and will be closed. Modern browsers are removing XSLT, which this plugin uses to style feeds. <a href="%s" target="_blank" rel="noopener noreferrer">Learn more</a>.', 'pretty-rss' ),
+							array(
+								'a' => array(
+									'href'   => array(),
+									'target' => array(),
+									'rel'    => array(),
+								),
+							)
+						),
+						esc_url( 'https://developer.chrome.com/docs/web-platform/deprecating-xslt' )
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Store the deprecation notice dismissal for the current user.
+		 *
+		 * @since  2.1.0
+		 * @access public
+		 * @return void
+		 */
+		public function dismiss_deprecation_notice() {
+			check_ajax_referer( 'prettyrss_dismiss_deprecation_notice', 'nonce' );
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( null, 403 );
+			}
+
+			update_user_meta( get_current_user_id(), 'prettyrss_dismissed_deprecation_notice', '1' );
+			wp_send_json_success();
 		}
 
 		/**
