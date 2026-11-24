@@ -1,3 +1,7 @@
+THIS PLUGIN IS CLOSED.
+
+THIS REPO IS NOW ARCHIVED.
+
 === Pretty RSS Feeds [DEPRECATED] ===
 Contributors: lastsplash, brookedot
 Tags: rss, feed, feeds
